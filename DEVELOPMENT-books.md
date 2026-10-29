@@ -1,6 +1,6 @@
 # Peer address/book development
 
-Branch: `feat/peer-address-books`. Local only; no PR submitted. Requires the matching backend branch from `korsun009/rustdesk-api`, database version 275. Do not install this frontend alone on the unmodified v4.1.8 backend.
+The maintained default branch is `master` in `korsun009/rustdesk-api-web`, forked from `alonginwind/rustdesk-api-web`. The implementation is also retained in `feat/peer-address-books`. No new upstream PR has been submitted. Requires the matching `main` backend from `korsun009/rustdesk-api`, database version 275. Do not install this frontend alone on the unmodified v4.1.8 backend.
 
 The peer table shows all accessible book aliases, with book/owner context, and a separately editable connection address. Empty device defaults use the registered RustDesk ID. Adding to books copies that address into independent contact records; later book edits do not change the device default or other books.
 
