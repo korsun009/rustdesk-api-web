@@ -1,6 +1,26 @@
 # Peer address/book development
 
-The maintained default branch is `master` in `korsun009/rustdesk-api-web`, forked from `alonginwind/rustdesk-api-web`. The implementation is also retained in `feat/peer-address-books`. No new upstream PR has been submitted. Requires the matching `main` backend from `korsun009/rustdesk-api`, database version 275. Do not install this frontend alone on the unmodified v4.1.8 backend.
+## Deployment capability
+
+The API deployment controls the scheme with `app.device-address-books: true`
+(or `RUSTDESK_API_APP_DEVICE_ADDRESS_BOOKS=true`). It defaults to false.
+The panel reads `device_address_books` from `/api/admin/config/app`; this is
+read-only and shared by every account. There is no browser/user toggle.
+
+When false, missing (older backend), or unavailable, the panel uses the original
+peer/book forms, single-book selection, ID labels, global aliases and registered
+ID links. New device-address editing and association selectors are hidden; book
+forms do not fetch the new association inventory or send new-mode fields.
+New-mode personal forms wait for configuration before mounting. Turning the
+option on shows the enhanced scheme described below.
+
+`npm run test:browser` runs both the enhanced and legacy contracts, including
+explicit false, missing capability and failed configuration. These synthetic
+browser tests exercise single-book submission and prove that disabled forms
+do not call the new editor or load association inventory. Backend tests cover
+both schemes independently; no production data is used.
+
+The enhanced mode requires the matching backend with database version 275 and the deployment capability enabled. Older backends use the legacy UI.
 
 The peer table shows all accessible book aliases, with book/owner context, and a separately editable connection address. Empty device defaults use the registered RustDesk ID. Adding to books copies that address into independent contact records; later book edits do not change the device default or other books.
 
